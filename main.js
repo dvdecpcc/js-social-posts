@@ -65,7 +65,7 @@ for (let x=0; x<posts.length; x++){
                                             <img class="profile-pic" src="${posts[x].author.image}" alt="Phil Mangione">                    
                                         </div>
                                         <div class="post-meta__data">
-                                            <div class="post-meta__author">${posts[x].author['name']}/div>
+                                            <div class="post-meta__author">${posts[x].author['name']}</div>
                                             <div class="post-meta__time">${posts[x].created}</div>
                                         </div>                    
                                     </div>
@@ -87,7 +87,21 @@ for (let x=0; x<posts.length; x++){
                                         </div>
                                     </div> 
                                 </div>            
-                            </div>
+                            </div>`;
 
-                            </div>`
+                        
 }
+
+const jsLikeBtnsDom = document.getElementsByClassName('js-like-button');
+
+for (let i = 0; i<jsLikeBtnsDom.length; i++){
+    jsLikeBtnsDom[i].addEventListener('click', function(event){
+        event.preventDefault();
+        this.classList.add('like-button--liked');
+        const postid = this.getAttribute('data-postid');
+
+        const likeCounterDom = document.getElementById('like-counter-' + postid);
+        likeCounterDom.innerText = parseInt(likeCounterDom.innerText) + 1;
+        console.log(likeCounterDom);
+    });
+};
